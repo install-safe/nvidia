@@ -1,0 +1,155 @@
+wsl --install Ubuntu
+wsl --install Ubuntu --name Ubuntu2
+
+
+wsl --list 
+
+wsl -d Ubuntu-24.04
+
+wsl --list --running
+
+
+
+
+    6  sudo apt update
+    7  sudo apt upgrade
+    8  sudo apt install -y build-essential
+    9  pwd
+   10  wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_570.86.10_linux.run
+   14  sudo sh cuda_12.8.0_570.86.10_linux.run
+
+angelo@11401-A525-NB2:~$ vi   ~/.bashrc
+export PATH=/usr/local/cuda-12.8/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+angelo@11401-A525-NB2:~$
+
+angelo@11401-A525-NB2:~$ source ~/.bashrc
+angelo@11401-A525-NB2:~$ nvcc -V
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Jan_15_19:20:09_PST_2025
+Cuda compilation tools, release 12.8, V12.8.61
+Build cuda_12.8.r12.8/compiler.35404655_0
+angelo@11401-A525-NB2:~$
+
+
+## cuda  sample START
+		cd ~
+        git clone https://github.com/NVIDIA/cuda-samples
+        cd cuda-samples/Samples/1_Utilities/deviceQuery
+		cmake ..
+        make -j$(nproc) 
+
+pwd
+/home/angelo/cuda-samples/Samples/1_Utilities/deviceQuery/deviceQuery
+ ./deviceQuery
+./deviceQuery Starting...
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+Detected 1 CUDA Capable device(s)
+
+Device 0: "NVIDIA RTX PRO 1000 Blackwell Generation Laptop GPU"
+  CUDA Driver Version / Runtime Version          12.8 / 12.8
+  CUDA Capability Major/Minor version number:    12.0
+  Total amount of global memory:                 8151 MBytes (8546549760 bytes)
+  (020) Multiprocessors, (128) CUDA Cores/MP:    2560 CUDA Cores
+  GPU Max Clock rate:                            2160 MHz (2.16 GHz)
+  Memory Clock rate:                             12001 Mhz
+  Memory Bus Width:                              128-bit
+  L2 Cache Size:                                 33554432 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total shared memory per multiprocessor:        102400 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  1536
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 1 copy engine(s)
+  Run time limit on kernels:                     Yes
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Disabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Managed Memory:                Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      No
+  Device PCI Domain ID / Bus ID / location ID:   0 / 1 / 0
+  Compute Mode:
+     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 12.8, CUDA Runtime Version = 12.8, NumDevs = 1
+Result = PASS
+
+## cuda sample END
+
+
+https://docs.nvidia.com/deeplearning/cudnn/installation/latest/linux.html
+
+https://developer.nvidia.com/cudnn-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=24.04&target_type=deb_local
+
+Installation Instructions:
+wget https://developer.download.nvidia.com/compute/cudnn/9.15.0/local_installers/cudnn-local-repo-ubuntu2404-9.15.0_1.0-1_amd64.deb
+sudo dpkg -i cudnn-local-repo-ubuntu2404-9.15.0_1.0-1_amd64.deb
+sudo cp /var/cudnn-local-repo-ubuntu2404-9.15.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cudnn  #### no 
+####
+To install for CUDA 12, perform the above configuration but install the CUDA 12 specific package:
+sudo apt-get -y install cudnn9-cuda-12
+
+
+
+angelo@11401-A525-NB2:~$ python3
+Python 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+#miniconda
+
+https://www.anaconda.com/docs/getting-started/miniconda/install#linux-terminal-installer
+https://repo.anaconda.com/miniconda/
+ wget https://repo.anaconda.com/miniconda/Miniconda3-py312_25.9.1-1-Linux-x86_64.sh
+
+
+~~ how to verify or application cunda cudnn ??   
+ 
+ 
+
+
+
+https://blog.csdn.net/qq_43705697/article/details/121618276
+
+
+
+
+
+
+
+
+
+
+
+
+###Reference Resource  
+https://www.youtube.com/watch?v=7GkCXpLOGYI
+
+https://ivonblog.com/posts/ubuntu-install-nvidia-drivers/
+
+
+
+
+Install and run gpu-burn
+
+git clone https://github.com/wilicc/gpu-burn
+cd gpu-burn
+make
+./gpu_burn 60 # will run gpu_burn for 60 seconds
