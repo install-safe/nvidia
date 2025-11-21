@@ -17,7 +17,7 @@ $ sudo add-apt-repository ppa:graphics-drivers
 $ sudo apt-get update
 $ sudo apt upgrade
 $ ubuntu-drivers list
-$ sudo apt install nvidia-driver-545
+$ sudo apt install nvidia-driver-580
 $ reboot
 
 
@@ -157,6 +157,7 @@ Manage Ollama API Connections
 
 改成
 http://localhost:11434
+
 
 
 
