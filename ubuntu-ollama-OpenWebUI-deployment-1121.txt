@@ -5,6 +5,7 @@
 sudo apt install network-manager
 sudo reboot
 如果有用 nmcli設網路要確認會不會跑掉
+或是去確認修改 /etc/netplan之中的nic yaml
 
 
 hostnamectl     # check the Ubuntu version 
@@ -157,6 +158,7 @@ Manage Ollama API Connections
 
 改成
 http://localhost:11434
+
 
 
 
