@@ -1,3 +1,5 @@
+影片 ：搭建私人 AI 聊天室 Ubuntu ollama  OpenWebUI  部署
+
 #Ubuntu 24 OS裝好
 #網路設好
 sudo apt install network-manager
@@ -155,5 +157,6 @@ Manage Ollama API Connections
 
 改成
 http://localhost:11434
+
 
 
