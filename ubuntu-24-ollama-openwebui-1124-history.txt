@@ -53,3 +53,44 @@
    48  vi docker-compose.yaml
    49  sudo docker compose up -d
    50  docker ps
+
+
+####docker-compose.yaml
+$ cat docker-compose.yaml
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: always
+    network_mode: "host"          # ★ 主機網路模式：外部可直接存取
+    volumes:
+      - ./ollama/data:/root/.ollama
+# ✨ NVIDIA GPU 配置
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434  # ★ 讓所有人都能連到 Ollama
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: always
+    ports:
+      - "3000:8080"
+
+    network_mode: "host"          # ★ 主機網路模式：自動連 localhost
+    volumes:
+      - ./open-webui/data:/app/backend/data
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_API_BASE_URL=http://localhost:11434/api   # ★ 永遠可連成功
+####docker-compose.yaml
