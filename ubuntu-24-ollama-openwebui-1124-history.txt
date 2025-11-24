@@ -1,0 +1,55 @@
+
+ history
+    1  ip a
+    2  sudo lshw -numeric -C display
+    3  sudo apt update
+    4  sudo apt upgrade
+    5  clear
+    6  sudo apt install nvidia-driver-580
+    7  sudo reboot
+
+    8  nvidia-smi
+    9  sudo apt install nvidia-utils-580-server
+   10  sudo apt update
+   11  sudo apt install ca-certificates curl gnupg
+   12  sudo install -m 0755 -d /etc/apt/keyrings
+   13  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+   14  sudo chmod a+r /etc/apt/keyrings/docker.gpg
+   15  clear
+
+
+   16  echo   "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   17    \"$(. /etc/os-release && echo \"$VERSION_CODENAME\")\" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   18  sudo apt update
+   19  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   20  sudo usermod -aG docker user
+   21  exit
+
+
+   22  docker ps
+   25  docker version
+   26  clear
+   27  sudo apt-get update && sudo apt-get install -y --no-install-recommends    curl    gnupg2
+   28  clear
+
+
+   29  curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list |     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+   30  sudo sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
+   31  sudo apt-get update
+   32  export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.18.0-1
+   33  clear
+
+   34  sudo nvidia-ctk runtime configure --runtime=docker
+   35  sudo systemctl restart docker
+   36  pwd
+
+
+   42  sudo apt install nvtop
+   43  nvtop
+
+
+   46  mkdir ollama-openwebui
+   47  cd ollama-openwebui/
+   48  vi docker-compose.yaml
+   49  sudo docker compose up -d
+   50  docker ps
