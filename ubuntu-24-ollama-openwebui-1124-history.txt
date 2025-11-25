@@ -1,4 +1,4 @@
-
+##階段一 Build OS/ ollama , openWebUI 
  history
     1  ip a
     2  sudo lshw -numeric -C display
@@ -94,3 +94,16 @@ services:
     environment:
       - OLLAMA_API_BASE_URL=http://localhost:11434/api   # ★ 永遠可連成功
 ####docker-compose.yaml
+
+##how to upgrade openwebui?
+
+##階段二  LLM from others .
+
+
+##階段三 withc MCP 
+//MCPO
+
+
+
+
+
